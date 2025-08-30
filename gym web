@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gym web</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style: none;
+        scroll-behavior: smooth;
+        font-family: sans-serif;
+        background-color: black;
+    }
+    body{
+        max-width: 1920px;
+        min-width: 320px;
+    }
+
+    .nav {
+        color: azure;
+        background-color: #000000;
+        display: flex;
+        position: fixed;
+    }
+
+    .logo {
+        color: azure;
+        padding: 15px;
+        font-size: 25px;
+        padding-left: 80px;
+    }
+
+    .navbar {
+        color: rgb(240, 255, 252);
+        display: flex;
+        list-style: none;
+        text-decoration: none;
+        gap: 30px;
+        padding: 15px;
+        padding-left: 180px;
+    }
+
+    .navbar :hover {
+        transform: scale(1.1);
+        transition: all ease .1s;
+        border-bottom: 1.5px solid rgb(55, 255, 195);
+    }
+
+    .navbar a {
+        color: azure;
+        padding left: 40px;
+    }
+
+    .top-btn {
+        padding: 15px;
+        padding-left: 100px;
+        padding-top: 20px;
+    }
+
+    .top-btn :hover {
+        cursor: pointer;
+        color: black;
+        background-color: rgb(55, 255, 195);
+        transform: scale(1.1);
+        transition: all ease .5s;
+    }
+
+    .top-btn a {
+        color: rgb(55, 255, 195);
+        background-color: #000000;
+        border: 1px rgb(55, 255, 195) solid;
+        border-radius: 15px;
+        padding: 10px;
+    }
+
+    .home {
+        color: azure;
+        padding: 30px;
+        padding-top: 80px;
+    }
+
+    .p {
+        color: azure;
+        padding-top: 10px;
+    }
+
+    .btn {
+        padding-left: 30px;
+    }
+
+    .btn a {
+        color: rgb(55, 255, 195);
+        background-color: #000000;
+        border: 1px rgb(55, 255, 195) solid;
+        border-radius: 15px;
+        padding: 10px;
+    }
+
+    .btn :hover {
+        cursor: pointer;
+        color: black;
+        background-color: rgb(55, 255, 195);
+        transform: scale(1.1);
+        transition: all ease .5s;
+    }
+
+    img {
+        float: right;
+        height: 600px;
+        width: 550px;
+        padding-top: 5px;
+        padding-right: 40px;
+        padding-bottom: 150px;
+    }
+
+    .home img {
+        justify-content: end;
+        align-items: end;
+        display: flex;
+        padding-left: 200px;
+    }
+
+    .services {
+        background-color: #000000;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .services h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: rgb(55, 255, 195);
+    }
+
+    .services a {
+        text-decoration: none;
+        color: rgb(55, 255, 195);
+    }
+
+    /* Card Container */
+    .card-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    /* Individual Card */
+    .card {
+        background-color: #020202;
+        padding: 30px 20px;
+        width: 280px;
+        border: 1px solid rgb(55, 255, 195);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .card h3 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        color: rgb(55, 255, 195);
+    }
+
+    .card p {
+        font-size: 1em;
+        color: azure;
+        line-height: 1.5;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        transition: all ease 0.5s;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .card-wrapper {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+        }
+    }
+
+    .contact form {
+        max-width: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contact input,
+    .contact textarea {
+        color: white;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .contact button {
+        padding: 10px;
+        background: #000000;
+        color: rgb(55, 255, 195);
+        border: 1px solid rgb(55, 255, 195);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .section {
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .section img {
+        float: left;
+        height: 600px;
+        width: 1000px;
+    }
+
+    .box {
+        float: right;
+        margin: 20px;
+    }
+
+    .section h1 {
+        color: rgb(55, 255, 195);
+        display: flex;
+    }
+
+    .section p {
+        color: rgb(255, 255, 255);
+        padding-top: 30px;
+    }
+
+    .pricing {
+        background-color: #000000;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .pricing h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: rgb(55, 255, 195);
+    }
+
+    /* Card Layout */
+    .price-card-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    /* Individual Card */
+    .price-card {
+        background-color: #070707;
+        padding: 30px 20px;
+        width: 280px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+    }
+
+    .price-card h3 {
+        font-size: 1.6em;
+        color: rgb(55, 255, 195);
+        margin-bottom: 15px;
+    }
+
+    .price-card .price {
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color:rgb(55, 255, 195);
+    }
+
+    .price-card .price span {
+        font-size: 0.6em;
+        color: rgb(55, 255, 195);
+    }
+
+    .price-card ul {
+        color:rgb(55, 255, 195) ;
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .price-card ul li {
+        padding: 8px 0;
+        border-bottom: 1px solid rgb(55, 255, 195);
+        font-size: 0.95em;
+    }
+
+    /* CTA Button */
+    .price-card .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #000000;
+        color: rgb(55, 255, 195);
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .price-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .price-card-wrapper {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .price-card {
+            width: 90%;
+        }
+    }
+
+
+    footer {
+        background: #111;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+    }
+</style>
+
+<body>
+    <!-- navbar -->
+    <div class="nav">
+        <a href="#" class="logo">Pulse <span style="color:rgb(55, 255, 195) ;">Fit</span></a>
+        <ul class="navbar">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#section">About Us</a>
+            <a href="#pricing">Pricing</a>
+        </ul>
+        <div class="top-btn">
+            <a href="#contact">Join Us</a>
+        </div>
+    </div>
+    <!-- hero section -->
+    <div class="home">
+        <div class="img">
+            <img src="./body.jpg" alt="home image">
+        </div>
+        <div class="home content">
+            <h1>Build Your</h1>
+            <h1>Dream Physique</h1>
+            <h2 style="color: rgb(55, 255, 195);">Physical Fitness |</h2>
+            <div class="p">
+                <p>Regular exercise builds resilience, sharpens the mind,</p>
+                <p>and empowers you to live life to the fullest.</p>
+            </div>
+        </div>
+        <div class="btn">
+            <a href="#contact">Join Us</a>
+        </div>
+    </div>
+    <!-- Services -->
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2><a href="#">Our Services</a></h2>
+            <div class="card-wrapper">
+                <div class="card">
+                    <h3>Personal Training</h3>
+                    <p>Get customized workout plans with expert guidance from certified trainers.</p>
+                </div>
+                <div class="card">
+                    <h3>Group Classes</h3>
+                    <p>Join fun and energetic classes including HIIT, strength, and cardio workouts.</p>
+                </div>
+                <div class="card">
+                    <h3>Nutrition Coaching</h3>
+                    <p>Access meal planning and nutrition advice tailored to your fitness goals.</p>
+                </div>
+                <div class="card">
+                    <h3>24/7 Access</h3>
+                    <p>Work out on your schedule with round-the-clock gym access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="section" class="section">
+        <img src="./workout.jpg" alt="click">
+        <div class="box">
+            <h1>Why Choose Us?</h1>
+
+            <p>
+                Our divers membership base create a friendly and supportive atmosphere, where you can make friends and
+                stay motivated.
+            </p>
+            <p>Unlock your potential with our expert trainers</p>
+            <p>Elevate your fitness with practice session</p>
+            <p>We provide supportive management, for your fitness success.</p>
+            <br>
+            <div class="btn">
+                <center><a href="#contact">Join Us</a></center>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Membership Plans</h2>
+            <div class="price-card-wrapper">
+                <div class="price-card">
+                    <h3>Basic</h3>
+                    <p class="price"> Rs.2000 <span>/month</span></p>
+                    <ul>
+                        <li>Gym Access</li>
+                        <li>Locker Room</li>
+                        <li>1 Group Class/Week</li>
+                    </ul>
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Standard</h3>
+                    <p class="price">Rs.5000<span>/month</span></p>
+                    <ul>
+                        <li>Everything in Basic</li>
+                        <li>Unlimited Classes</li>
+                        <li>1 Personal Training Session</li>
+                    </ul>
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Premium</h3>
+                    <p class="price">Rs.8000<span>/month</span></p>
+                    <ul>
+                        <li>All Standard Features</li>
+                        <li>Dedicated Trainer</li>
+                        <li>Nutrition Coaching</li>
+                        <li>24/7 Access</li>
+                    </ul>
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <center>
+                <h2 style="color:rgb(55, 255, 195) ">Contact us</h2>
+            </center>
+            <br><br>
+            <form>
+                <input type="text" placeholder="Your Name" required />
+                <input type="email" placeholder="Email Address" required />
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PulseFit Gym. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
